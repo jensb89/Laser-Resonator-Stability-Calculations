@@ -3,6 +3,9 @@ Laser-Resonator-Stability-Calculations
 
 Calculate stability plots and more for a (TiSa)-Laser-Resonator with the ABCD matrix formalism
 
+Simplified setup:
+![GUI1](pics/Laser_Cavity.png)
+
 
 ## Usage
 Start one of the following Matlab-files:
