@@ -13,15 +13,15 @@ res = Resonator(3.2E-3,...                   %TiSa-crystal thickness / m
                  0.1,...                     %focusing mirrors radius of curvature / m
                  1.84,...                    % Length of Resonator (L_ges = L1+L2+R+dK) / m
                  800e-9,...                  %Wavelength / m
-                 's')                        %Polarisation ('s' or 'p')
+                 's');                       %Polarisation ('s' or 'p')
 
 %% Optimal folding angle Theta_ges = Theta_1 + Theta_2
 theta_ges=res.getTheta();
 fprintf('Theta_ges = %1.2fdeg\n',theta_ges/pi*180)
 
 %% Set Distribution of Arm Lengths + folding angle
-res.setArmLengthDist(1/3)%63); %Arm1 = val*(L1+L2); Arm2 = (1-val)*(L1+L2)
-res.setThetaDist(2/3)%0.63); %Theta1 = val*theta_ges, theta2 = (1-val)*theta_ges
+res.setArmLengthDist(1/3); %Arm1 = val*(L1+L2); Arm2 = (1-val)*(L1+L2)
+res.setThetaDist(2/3); %Theta1 = val*theta_ges, theta2 = (1-val)*theta_ges
 res.setRelCrystalPos(0.5); %Crystal in the middle of the cavity
 
 %% Calc Stability for 's' and 'p' for different cavity mirror distances 
@@ -36,8 +36,8 @@ for i=1:length(delta)
     res.setPolarisation('s');
     
 end
-res.estimation_Delta();
-
+res.estimation_Delta(); %Prints estimated stability boundaries in console window
+% Here delta = 0 == delta + (dK_eff - dK)!!
 %% PLotting
 %x = (res.R+delta)/1E-3;
 x=delta/1E-3;

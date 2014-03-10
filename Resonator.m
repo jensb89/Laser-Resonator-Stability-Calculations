@@ -167,7 +167,7 @@ classdef Resonator < handle
             % Returns 1/q for the Eigenmode   
             q = (D-A)/(2*B) + 1/B * sqrt(((A+D)/2)^2-1); %1/q
             q = 1/q;
-            q = real(q) + 1i*abs(imag(q)); %abs da Eigenwert Gleichung = quadraitsch, Lösung +-
+            q = real(q) + 1i*abs(imag(q)); %abs because of quadratic eigenmode equation, solution +-
             R = real(q);
             w = sqrt(-this.lambda/pi/imag(1/q));
         end
