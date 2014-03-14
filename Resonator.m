@@ -227,7 +227,7 @@ classdef Resonator < handle
             L4 = free(this.dSK1);
             f1 = lens(f1);
             f2 = lens(f2);
-            theta = this.theta1/180*pi;
+            theta = this.theta2/180*pi;
             n = 1.5; % Cavity mirror index of refraction
             f3 = curved_mirror_transmission(this.R,dCM,theta,n,this.pol);
 
