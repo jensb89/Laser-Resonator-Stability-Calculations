@@ -184,12 +184,12 @@ classdef Resonator < handle
         
         
         function [z,w] = beamInsideCrystal(this)
-            % ABCD Matrix Formalism from M1 to K (right before the crystal)
+            % ABCD Matrix Formalism from M2 to K (right before the crystal)
             % Then the Gaussian beam inside the crystal is calculated with
             % q2 = Aq1+B / (Cq1+D)
-            L1 = free(this.L1);
-            LdSK1 = free(this.dSK1);
-            MC1 = curved_mirror(this.R,this.theta1/2,this.pol);
+            L2 = free(this.L2);
+            LdSK2 = free(this.dSK2);
+            MC2 = curved_mirror(this.R,this.theta2/2,this.pol);
             if strcmp(this.pol,'p')
                 nVak = 1;
                 theta_out = this.thetaK;
@@ -199,14 +199,14 @@ classdef Resonator < handle
             else
                 K_in = eye(2);
             end
-            M = K_in * LdSK1 * MC1 * L1;%L1 * MC1 * LdSK1 * K_in;
+            M = K_in * LdSK2 * MC2 * L2;%L2 * MC2 * LdSK2 * K_in;
             
             [A,B,C,D] = this.getABCD_Components(M);
-            q1 = this.q1; %Eigenmode at M1
+            q0 = this.q2; %Eigenmode at M2
             z = linspace(0,2*this.dK,300);
-            q2 = (A*q1+B)/(C*q1+D);
+            q1 = (A*q0+B)/(C*q0+D);
             
-            w  = sqrt(-this.lambda/pi./imag(1./(q2+z/this.nK))); 
+            w  = sqrt(-this.lambda/pi./imag(1./(q1+z/this.nK))); 
         end
         
         function [z_pump, w_pump] = PumpBeamInsideCrystal(this,lambda_p,w0,f1,f2,dCM,L12,L3)
